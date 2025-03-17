@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBL Resources | Inquiry-Based Learning</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for Resources page */
+        .page-banner {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .page-banner h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .resource-nav {
+            background-color: var(--background-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 70px;
+            z-index: 90;
+        }
+        
+        .resource-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .resource-links a {
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .resource-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .resource-links a:hover:after,
+        .resource-links a.active:after {
+            width: 100%;
+        }
+        
+        .resource-section {
+            padding: 4rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .resource-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .resource-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .video-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0,0,0,0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .video-card:hover .play-button {
+            background-color: rgba(51, 102, 204, 0.8);
+        }
+        
+        .video-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+        
+        .video-content p.creator {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .video-content p {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .download-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .download-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+        
+        .download-card p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        /* Fixed button alignment */
+        .download-btn-container {
+            margin-top: auto;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--hover-blue);
+            color: white;
+        }
+        
+        .articles-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .article-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .article-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-meta {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .article-tag {
+            background-color: var(--background-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (Same as homepage) -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span class="circle blue"></span>
+                    <span class="bars purple"></span>
+                    <span class="x-mark"></span>
+                </div>
+                <div class="logo-text">
+                    <h1>Inquiry-Based Learning</h1>
+                    <p>Education for All</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="resources.html" class="active">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>IBL Resources</h1>
+            <p>Tools, guides, and materials to support inquiry-based learning in your classroom</p>
+        </div>
+    </section>
+
+    <!-- Resource Navigation -->
+    <div class="resource-nav">
+        <div class="container">
+            <div class="resource-links">
+                <a href="#videos" class="active">Videos</a>
+                <a href="#lesson-plans">Lesson Plans</a>
+                <a href="#assessment">Assessment Tools</a>
+                <a href="#articles">Articles</a>
+                <a href="#books">Recommended Books</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Videos Section -->
+    <section id="videos" class="resource-section">
+        <div class="container">
+            <h2>Video Resources</h2>
+            <p class="text-center">Watch expert educators explain and demonstrate inquiry-based learning strategies</p>
+            
+            <div class="video-grid">
+                <!-- Video 1: Trevor MacKenzie -->
+                <div class="video-card" data-video-id="ioYDjtdJ1S0">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/ioYDjtdJ1S0/maxresdefault.jpg" alt="What is Inquiry-Based Learning?">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>What is Inquiry-Based Learning?</h3>
+                        <p class="creator">Trevor MacKenzie</p>
+                        <p>Trevor MacKenzie explains the core principles of inquiry-based learning and how it fosters student engagement and deeper learning.</p>
+                    </div>
+                </div>
+                
+                <!-- Video 2: Edutopia -->
+                <div class="video-card" data-video-id="QlwkerwaG2E">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/QlwkerwaG2E/maxresdefault.jpg" alt="Inquiry-Based Learning: From Teacher-Guided to Student-Driven">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>From Teacher-Guided to Student-Driven</h3>
+                        <p class="creator">Edutopia</p>
+                        <p>See how one school gradually releases responsibility to students as they progress through the inquiry process.</p>
+                    </div>
+                </div>
+                
+                <!-- Video 3: John Spencer -->
+                <div class="video-card" data-video-id="YH0zUMe8q3I">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/YH0zUMe8q3I/maxresdefault.jpg" alt="The Inquiry Process in the Classroom">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>The Inquiry Process in the Classroom</h3>
+                        <p class="creator">John Spencer</p>
+                        <p>John Spencer explains how to implement the inquiry cycle in your classroom with practical strategies for student engagement.</p>
+                    </div>
+                </div>
+                
+                <!-- Video 4: PBL Works -->
+                <div class="video-card" data-video-id="LMCZvGesRz8">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/LMCZvGesRz8/maxresdefault.jpg" alt="Project Based Learning: Explained">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Project Based Learning: Explained</h3>
+                        <p class="creator">PBL Works</p>
+                        <p>This video explains the connection between project-based learning and inquiry approaches.</p>
+                    </div>
+                </div>
+                
+                <!-- Video 5: Education Development Center -->
+                <div class="video-card" data-video-id="OWimVR9Ry2g">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/OWimVR9Ry2g/maxresdefault.jpg" alt="Inquiry-Based Learning for Science">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Inquiry-Based Learning for Science</h3>
+                        <p class="creator">Education Development Center</p>
+                        <p>Learn how inquiry approaches improve science education and engage students in authentic scientific practices.</p>
+                    </div>
+                </div>
+                
+                <!-- Video 6: Kath Murdoch -->
+                <div class="video-card" data-video-id="sLQPBmXJ774">
+                    <div class="video-thumbnail">
+                        <img src="https://img.youtube.com/vi/sLQPBmXJ774/maxresdefault.jpg" alt="The Power of Inquiry - Kath Murdoch">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-content">
+                        <h3>The Power of Inquiry</h3>
+                        <p class="creator">Kath Murdoch</p>
+                        <p>Inquiry learning expert Kath Murdoch discusses the powerful impact of inquiry-based approaches on student learning and engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson Plans Section -->
+    <section id="lesson-plans" class="resource-section">
+        <div class="container">
+            <h2>Lesson Plans & Teaching Resources</h2>
+            <p class="text-center">Download ready-to-use inquiry-based lesson plans and teaching materials</p>
+            
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Elementary Science Inquiry Unit</h3>
+                    <p>A complete inquiry unit on forces and motion for grades 3-5, including lesson plans, student handouts, and assessment rubrics.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/elementary_science_inquiry_unit.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Middle School History Inquiry</h3>
+                    <p>A structured inquiry unit examining primary sources to understand historical perspectives, suitable for grades 6-8.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/middle_school_history_inquiry.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>High School Biology Inquiry</h3>
+                    <p>A guided inquiry unit on ecosystems and biodiversity, including lab activities and research projects for grades 9-12.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/high_school_biology_inquiry.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Cross-Curricular Inquiry Project</h3>
+                    <p>A project-based inquiry unit that integrates science, math, and language arts around the theme of sustainability.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/cross_curricular_inquiry_project.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Tools Section -->
+    <section id="assessment" class="resource-section">
+        <div class="container">
+            <h2>Assessment Tools</h2>
+            <p class="text-center">Resources for assessing student learning in inquiry-based environments</p>
+            
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Inquiry Process Rubric</h3>
+                    <p>A comprehensive rubric for assessing student performance throughout the inquiry process.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/inquiry_process_rubric.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Self-Assessment Tools</h3>
+                    <p>Student self-assessment templates to promote reflection and metacognition during inquiry learning.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/self_assessment_tools.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Peer Feedback Forms</h3>
+                    <p>Structured templates for students to provide meaningful feedback to peers during collaborative inquiry.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/peer_feedback_forms.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progress Tracking Tools</h3>
+                    <p>Tools for monitoring and documenting student growth throughout long-term inquiry projects.</p>
+                    <div class="download-btn-container">
+                        <a href="pdfs/progress_tracking_tools.pdf" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="resource-section">
+        <div class="container">
+            <h2>Articles & Research</h2>
+            <p class="text-center">Scholarly articles and research papers on inquiry-based learning</p>
+            
+            <div class="articles-list">
+                <div class="article-card">
+                    <h3>A Meta-Analysis of the Effectiveness of Inquiry-Based Teaching</h3>
+                    <p class="article-meta">By M.A. Lazonder & R. Harmsen | Review of Educational Research | 2016</p>
+                    <p>This meta-analysis examines how different types of guidance affect inquiry learning outcomes. The study analyzed results from 72 studies and found that inquiry learning is more effective when it includes specific types of guidance.</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Research</span>
+                        <span class="article-tag">Meta-Analysis</span>
+                        <span class="article-tag">Guided Inquiry</span>
+                    </div>
+                    <a href="https://journals.sagepub.com/doi/abs/10.3102/0034654315627366" target="_blank" class="text-link">Read Full Article</a>
+                </div>
+                
+                <div class="article-card">
+                    <h3>Teacher Professional Learning: Developing with the Inquiry Stance</h3>
+                    <p class="article-meta">By Marilyn Cochran-Smith & Susan L. Lytle | Teachers College Record | 2009</p>
+                    <p>This influential article addresses how teachers can develop an "inquiry stance" that supports ongoing professional learning and effective implementation of inquiry approaches in the classroom.</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Teacher Development</span>
+                        <span class="article-tag">Implementation</span>
+                        <span class="article-tag">Professional Learning</span>
+                    </div>
+                    <a href="https://journals.sagepub.com/doi/abs/10.3102/0013189X09345590" target="_blank" class="text-link">Read Full Article</a>
+                </div>
+                
+                <div class="article-card">
+                    <h3>Inquiry-Based Science Instruction—What Is It and Does It Matter?</h3>
+                    <p class="article-meta">By Andrew A. Zucker, et al. | Journal of Research in Science Teaching | 2010</p>
+                    <p>This study examines the relationship between inquiry-based science instruction and student achievement and interest in science. The research demonstrates significant gains in critical thinking skills, scientific literacy, and positive attitudes toward science.</p>
+                    <div class="article-tags">
+                        <span class="article-tag">Science Education</span>
+                        <span class="article-tag">Critical Thinking</span>
+                        <span class="article-tag">Student Achievement</span>
+                    </div>
+                    <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/tea.20347" target="_blank" class="text-link">Read Full Article</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Books Section -->
+    <section id="books" class="resource-section">
+        <div class="container">
+            <h2>Recommended Books</h2>
+            <p class="text-center">Essential reading for educators interested in inquiry-based learning</p>
+            
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Dive Into Inquiry</h3>
+                    <p>By Trevor MacKenzie<br>A practical guide for implementing inquiry-based learning across grade levels and subject areas.</p>
+                    <div class="download-btn-container">
+                        <a href="https://www.amazon.com/Dive-into-Inquiry-Amplify-Learning/dp/1775331202/" target="_blank" class="download-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            Find on Amazon
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>The Power of Inquiry</h3>
+                    <p>By Kath Murdoch<br>Practical strategies for developing an inquiry-based classroom culture.</p>
+                    <div class="download-btn-container">
+                        <a href="https://www.amazon.com/Power-Inquiry-Kath-Murdoch/dp/0992259800/" target="_blank" class="download-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            Find on Amazon
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Comprehension & Collaboration</h3>
+                    <p>By Stephanie Harvey & Harvey Daniels<br>Inquiry circles for curiosity, engagement, and understanding.</p>
+                    <div class="download-btn-container">
+                        <a href="https://www.amazon.com/Comprehension-Collaboration-Revised-Inquiry-Understanding/dp/0325062862/" target="_blank" class="download-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            Find on Amazon
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Inquiry Mindset</h3>
+                    <p>By Trevor MacKenzie & Rebecca Bathurst-Hunt<br>Nurturing the dreams, wonders, and curiosities of our youngest learners.</p>
+                    <div class="download-btn-container">
+                        <a href="https://www.amazon.com/Inquiry-Mindset-Nurturing-Wonders-Curiosities/dp/1949595676/" target="_blank" class="download-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            Find on Amazon
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submit Resources Section -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Have inquiry-based resources to share?</h2>
+                <a href="contact.html" class="btn">SUBMIT RESOURCES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-wrapper">
+                <iframe id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Same as homepage) -->
+    <footer>
+        <div class="container">
+            <div class="logo-icon">
+                <span class="circle blue"></span>
+                <span class="bars purple"></span>
+                <span class="x-mark"></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for resource navigation
+            document.querySelectorAll('.resource-links a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    document.querySelectorAll('.resource-links a').forEach(a => a.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Scroll to section
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 150,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Video modal functionality
+            const modal = document.getElementById('videoModal');
+            const videoFrame = document.getElementById('videoFrame');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // Open modal and set video source when a video card is clicked
+            document.querySelectorAll('.video-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-video-id');
+                    videoFrame.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling while modal is open
+                });
+            });
+            
+            // Close modal when close button is clicked
+            closeModal.addEventListener('click', function() {
+                videoFrame.setAttribute('src', '');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+            
+            // Close modal when clicking outside the content
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    videoFrame.setAttribute('src', '');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                }
+            });
+        });
+    </script>
+</body>
+</html>

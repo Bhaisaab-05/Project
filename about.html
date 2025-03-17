@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Inquiry-Based Learning | IBL Resources</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for About page */
+        .page-banner {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .page-banner h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .content-section h2 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .ibl-principle {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .ibl-principle i {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .ibl-principle h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+        
+        .ibl-process {
+            background-color: var(--background-light);
+            padding: 4rem 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 220px;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .process-step h3 {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+        
+        .theories-section {
+            padding: 4rem 0;
+        }
+        
+        .theory-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .theory-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (Same as homepage) -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span class="circle blue"></span>
+                    <span class="bars purple"></span>
+                    <span class="x-mark"></span>
+                </div>
+                <div class="logo-text">
+                    <h1>Inquiry-Based Learning</h1>
+                    <p>Education for All</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <h1>About Inquiry-Based Learning</h1>
+            <p>Understanding the principles and methodology that drive effective inquiry in education</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="content-section">
+        <div class="container">
+            <h2>What is Inquiry-Based Learning?</h2>
+            <p>Inquiry-Based Learning (IBL) is a student-centered approach to education that places questions, ideas, and observations at the center of the learning experience. Unlike traditional teaching methods that often rely on direct instruction, IBL engages students in investigating real-world questions, scenarios, or problems.</p>
+            
+            <p>In an inquiry-based classroom, students take an active role in their learning by:</p>
+            <ul>
+                <li>Formulating questions and problems</li>
+                <li>Generating hypotheses</li>
+                <li>Collecting and analyzing data</li>
+                <li>Drawing conclusions based on evidence</li>
+                <li>Communicating findings and reflecting on the process</li>
+            </ul>
+            
+            <p>The teacher's role shifts from being the primary source of information to that of a facilitator who guides students through the inquiry process, provides resources, asks probing questions, and helps students develop the skills needed for effective inquiry.</p>
+            
+            <h3>Core Principles of Inquiry-Based Learning</h3>
+            <div class="content-grid">
+                <div class="ibl-principle">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>Question-Driven</h3>
+                    <p>Learning begins with questions that spark curiosity and drive investigation. These questions may come from students, teachers, or curriculum materials.</p>
+                </div>
+                
+                <div class="ibl-principle">
+                    <i class="fas fa-users"></i>
+                    <h3>Student-Centered</h3>
+                    <p>Students take ownership of their learning by actively participating in the construction of knowledge rather than passively receiving information.</p>
+                </div>
+                
+                <div class="ibl-principle">
+                    <i class="fas fa-search"></i>
+                    <h3>Evidence-Based</h3>
+                    <p>Conclusions are drawn from evidence gathered through investigation, not from authority or preconceived notions.</p>
+                </div>
+                
+                <div class="ibl-principle">
+                    <i class="fas fa-comments"></i>
+                    <h3>Collaborative</h3>
+                    <p>Students work together to investigate questions, share ideas, and build understanding, mirroring how knowledge is constructed in the real world.</p>
+                </div>
+                
+                <div class="ibl-principle">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Reflective</h3>
+                    <p>Students reflect on both what they've learned and how they've learned it, developing metacognitive skills essential for lifelong learning.</p>
+                </div>
+                
+                <div class="ibl-principle">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Interdisciplinary</h3>
+                    <p>Authentic inquiry often crosses traditional subject boundaries, helping students see connections between different areas of knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The IBL Process -->
+    <section class="ibl-process">
+        <div class="container">
+            <h2>The Inquiry-Based Learning Process</h2>
+            <p>While inquiry-based learning can take many forms, most approaches follow a cyclical process with these key phases:</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Ask</h3>
+                    <p>Students pose or respond to a meaningful question that sparks curiosity and drives investigation.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Investigate</h3>
+                    <p>Students gather information through research, experimentation, observation, or other methods.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Create</h3>
+                    <p>Students analyze findings and develop explanations or solutions based on evidence.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Discuss</h3>
+                    <p>Students share results, justify their thinking, and consider alternative explanations or approaches.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3>Reflect</h3>
+                    <p>Students evaluate their learning process, identify new questions, and consider applications.</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 3rem; font-style: italic;">This process is not always linear. Students may move back and forth between phases as new questions arise or initial investigations yield unexpected results.</p>
+        </div>
+    </section>
+
+    <!-- Educational Theories -->
+    <section class="theories-section">
+        <div class="container">
+            <h2>Educational Theories Supporting IBL</h2>
+            <p>Inquiry-based learning is grounded in several influential educational theories that emphasize active, constructive learning processes:</p>
+            
+            <div class="theory-card">
+                <h3>John Dewey: Learning by Doing</h3>
+                <p>John Dewey (1859-1952), a pioneering educational philosopher, advocated for experiential learning and believed that education should be grounded in real-life experience. His work emphasized:</p>
+                <ul>
+                    <li>Students should actively engage with their environment rather than passively receive information</li>
+                    <li>Education should connect to students' interests and experiences</li>
+                    <li>Learning is a social process that prepares students for democratic participation</li>
+                    <li>Problems and questions should drive the learning process</li>
+                </ul>
+                <p>Dewey's progressive education philosophy laid the foundation for modern inquiry-based approaches by emphasizing the importance of curiosity, experience, and reflection.</p>
+            </div>
+            
+            <div class="theory-card">
+                <h3>Jean Piaget: Cognitive Constructivism</h3>
+                <p>Jean Piaget (1896-1980), a Swiss psychologist known for his work on cognitive development, proposed that:</p>
+                <ul>
+                    <li>Children actively construct knowledge through interaction with their environment</li>
+                    <li>Learning occurs when children encounter new information that challenges their existing mental schemas</li>
+                    <li>Cognitive development proceeds through distinct stages, each characterized by qualitatively different ways of thinking</li>
+                    <li>Children should be provided with opportunities to discover and understand concepts through exploration</li>
+                </ul>
+                <p>Piaget's constructivist theory supports inquiry-based learning by highlighting how students build understanding through active investigation and by emphasizing the importance of challenging tasks that promote cognitive growth.</p>
+            </div>
+            
+            <div class="theory-card">
+                <h3>Lev Vygotsky: Social Constructivism</h3>
+                <p>Lev Vygotsky (1896-1934), a Russian psychologist, emphasized the social nature of learning. His theories support inquiry-based approaches through concepts such as:</p>
+                <ul>
+                    <li>The Zone of Proximal Development (ZPD): The gap between what a learner can do independently and what they can achieve with guidance</li>
+                    <li>Scaffolding: Temporary support provided by teachers or more knowledgeable peers to help students achieve tasks they couldn't complete alone</li>
+                    <li>Social interaction as essential to cognitive development</li>
+                    <li>Language as a critical tool for developing higher-order thinking</li>
+                </ul>
+                <p>Vygotsky's work highlights the importance of collaborative inquiry and the teacher's role in facilitating learning through strategic guidance and questioning.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types of Inquiry -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Types of Inquiry-Based Learning</h2>
+            <p>Educators can implement inquiry-based learning along a spectrum based on the level of teacher guidance and student independence:</p>
+            
+            <div class="theory-card">
+                <h3>Structured Inquiry</h3>
+                <p><strong>Teacher provides:</strong> Question, procedure, and materials<br>
+                <strong>Students determine:</strong> Results and conclusions</p>
+                <p>In structured inquiry, the teacher provides students with a question to investigate, specific procedures to follow, and the materials needed. Students collect and analyze data to reach their own conclusions.</p>
+                <p>This approach is useful for introducing inquiry skills to novice learners or when specific learning outcomes are required.</p>
+                <p><strong>Example:</strong> In a structured inquiry about plant growth, the teacher might provide seeds, soil, and light sources, along with a procedure for testing how different amounts of light affect growth rates. Students follow the procedure, collect data, and draw conclusions about the relationship between light and plant growth.</p>
+            </div>
+            
+            <div class="theory-card">
+                <h3>Guided Inquiry</h3>
+                <p><strong>Teacher provides:</strong> Question and materials<br>
+                <strong>Students determine:</strong> Procedure, results, and conclusions</p>
+                <p>In guided inquiry, the teacher provides the research question and necessary materials, but students design their own procedures for investigating the question. This approach develops greater independence and problem-solving skills.</p>
+                <p>Guided inquiry bridges the gap between structured inquiry and more open-ended approaches.</p>
+                <p><strong>Example:</strong> For a guided inquiry about force and motion, the teacher might ask, "How does the mass of an object affect its acceleration down a ramp?" and provide various objects, ramps, and timing devices. Students design their own experiments, decide what data to collect, and develop explanations based on physics principles.</p>
+            </div>
+            
+            <div class="theory-card">
+                <h3>Open Inquiry</h3>
+                <p><strong>Teacher provides:</strong> Materials and support<br>
+                <strong>Students determine:</strong> Question, procedure, results, and conclusions</p>
+                <p>In open inquiry, students formulate their own research questions, design and conduct their investigations, and communicate their findings. The teacher acts primarily as a facilitator and resource.</p>
+                <p>This approach represents the highest level of student independence and closely resembles authentic scientific inquiry.</p>
+                <p><strong>Example:</strong> In an open inquiry unit on local ecology, students might identify environmental issues in their community, develop research questions about those issues, design investigations to collect relevant data, and propose evidence-based solutions. One student might investigate water quality in a local stream, while another examines the impact of invasive plant species.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/CTA Section -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to implement IBL in your classroom?</h2>
+                <a href="resources.html" class="btn">EXPLORE RESOURCES</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as homepage) -->
+    <footer>
+        <div class="container">
+            <div class="logo-icon">
+                <span class="circle blue"></span>
+                <span class="bars purple"></span>
+                <span class="x-mark"></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
