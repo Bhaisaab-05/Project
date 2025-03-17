@@ -704,3 +704,178 @@ footer {
         margin-left: auto;
     }
 }
+/* Add these styles to your existing CSS (in the <style> section or styles.css file) */
+
+/* Mobile Menu Styles */
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--primary-blue);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    nav {
+        position: relative;
+    }
+    
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 1rem 0;
+        z-index: 100;
+        width: 100%;
+    }
+    
+    nav.active ul {
+        display: flex;
+    }
+    
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 0.8rem 1rem;
+    }
+    
+    .search-bar {
+        margin-left: auto;
+    }
+    
+    /* Improve layout on mobile */
+    header .container {
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        order: 2;
+    }
+    
+    .mobile-menu-toggle {
+        order: 1;
+    }
+    
+    .search-bar {
+        order: 3;
+        margin-left: auto;
+    }
+    
+    nav {
+        order: 4;
+        width: 100%;
+        margin-top: 1rem;
+    }
+    
+    /* Improve content boxes */
+    .content-box {
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .column {
+        min-height: auto;
+    }
+    
+    .image-background {
+        position: relative;
+        height: 200px;
+    }
+    
+    /* Improve form interactions on mobile */
+    .form-input, 
+    .form-textarea, 
+    .form-select, 
+    .btn, 
+    .form-submit, 
+    .download-btn {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        padding: 0.8rem 1rem;
+    }
+    
+    /* Make sure video modal works on mobile */
+    .video-modal-content {
+        width: 90%;
+    }
+    
+    /* Adjust stats for mobile */
+    .stat-number {
+        font-size: 3rem;
+    }
+    
+    /* Ensure two-column layouts collapse properly */
+    .two-column {
+        flex-direction: column;
+    }
+    
+    /* Better spacing for mobile */
+    section {
+        padding: 2rem 0;
+    }
+    
+    .hero {
+        padding: 4rem 0;
+    }
+    
+    /* Adjust hero text size on mobile */
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-highlight {
+        font-size: 2.2rem;
+    }
+    
+    /* Better spacing for grid items */
+    .downloads-grid,
+    .video-grid {
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar {
+        width: 100%;
+        order: 4;
+        margin-top: 1rem;
+    }
+    
+    nav {
+        order: 5;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-highlight {
+        font-size: 1.8rem;
+    }
+    
+    .page-banner h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+}

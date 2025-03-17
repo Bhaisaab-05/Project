@@ -187,3 +187,54 @@ function handleFormSubmission(formElement) {
         }
     });
 }
+/* JavaScript to add to your existing script.js or script section */
+
+// Add this to your existing JavaScript in the DOMContentLoaded event
+function setupMobileMenu() {
+    // Create mobile menu toggle button if it doesn't exist
+    if (!document.querySelector('.mobile-menu-toggle')) {
+        const header = document.querySelector('header');
+        const nav = header.querySelector('nav');
+        const container = header.querySelector('.container');
+        
+        const mobileToggle = document.createElement('button');
+        mobileToggle.className = 'mobile-menu-toggle';
+        mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        mobileToggle.setAttribute('aria-label', 'Toggle navigation menu');
+        
+        container.insertBefore(mobileToggle, container.firstChild);
+        
+        // Toggle navigation when clicked
+        mobileToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            
+            // Change icon based on state
+            const icon = this.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+        
+        // Close menu when clicking anywhere else
+        document.addEventListener('click', function(event) {
+            if (!nav.contains(event.target) && !mobileToggle.contains(event.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                mobileToggle.querySelector('i').className = 'fas fa-bars';
+            }
+        });
+        
+        // Close menu when a link is clicked
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+                mobileToggle.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+    }
+}
+
+// Add this line to the DOMContentLoaded event
+setupMobileMenu();
